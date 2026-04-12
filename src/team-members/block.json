@@ -4,9 +4,15 @@
 	"name": "wpblocks/team-members",
 	"version": "0.1.0",
 	"title": "Team members",
-	"category": "widgets",
-	"icon": "smiley",
-	"description": "Example block scaffolded with Create Block tool.",
+	"category": "media",
+	"icon": "admin-users",
+	"description": "A block to display team members.",
+	"keywords": [
+		"team",
+		"members",
+		"staff",
+		"employees"
+	],
 	"example": {},
 	"supports": {
 		"html": false
