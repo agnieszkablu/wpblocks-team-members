@@ -34,7 +34,21 @@ function Edit() {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
     ...(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.useBlockProps)(),
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.InnerBlocks, {
-      allowedBlocks: ['wpblocks/team-member']
+      allowedBlocks: ['wpblocks/team-member'],
+      template: [['wpblocks/team-member'
+      // {
+      // 	name: 'John Doe',
+      // 	bio: 'A brief bio about John Doe.',
+      // }
+      ], ['wpblocks/team-member'
+      // {
+      // 	name: 'Jane Smith',
+      // 	bio: 'A brief bio about Jane Smith.',
+      // }
+      ]]
+      //templateLock="all"//user cannot add or remove blocks, but can edit existing ones
+      // orientation="horizontal"
+      // renderAppender={ false }
     })
   });
 }
