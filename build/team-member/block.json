@@ -18,7 +18,20 @@
   ],
   "example": {},
   "supports": {
-    "html": false
+    "html": false,
+    "reusable": false
+  },
+  "attributes": {
+    "name": {
+      "type": "string",
+      "source": "html",
+      "selector": "h4"
+    },
+    "bio": {
+      "type": "string",
+      "source": "html",
+      "selector": "p"
+    }
   },
   "textdomain": "team-member",
   "editorScript": "file:./index.js"

@@ -23,7 +23,20 @@ return array(
 			
 		),
 		'supports' => array(
-			'html' => false
+			'html' => false,
+			'reusable' => false
+		),
+		'attributes' => array(
+			'name' => array(
+				'type' => 'string',
+				'source' => 'html',
+				'selector' => 'h4'
+			),
+			'bio' => array(
+				'type' => 'string',
+				'source' => 'html',
+				'selector' => 'p'
+			)
 		),
 		'textdomain' => 'team-member',
 		'editorScript' => 'file:./index.js'
