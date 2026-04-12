@@ -3,15 +3,21 @@
   "apiVersion": 3,
   "name": "wpblocks/team-members",
   "version": "0.1.0",
-  "title": "Boilerplate",
-  "category": "widgets",
-  "icon": "smiley",
-  "description": "Example block scaffolded with Create Block tool.",
+  "title": "Team members",
+  "category": "media",
+  "icon": "groups",
+  "description": "A block to display team members.",
+  "keywords": [
+    "team",
+    "members",
+    "staff",
+    "employees"
+  ],
   "example": {},
   "supports": {
     "html": false
   },
-  "textdomain": "boilerplate",
+  "textdomain": "team-members",
   "editorScript": "file:./index.js",
   "editorStyle": "file:./index.css",
   "style": "file:./style-index.css",

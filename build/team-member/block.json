@@ -1,0 +1,25 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "wpblocks/team-member",
+  "version": "0.1.0",
+  "title": "Team member",
+  "parent": [
+    "wpblocks/team-members"
+  ],
+  "category": "media",
+  "icon": "admin-users",
+  "description": "A block to display team member.",
+  "keywords": [
+    "team",
+    "member",
+    "staff",
+    "employee"
+  ],
+  "example": {},
+  "supports": {
+    "html": false
+  },
+  "textdomain": "team-member",
+  "editorScript": "file:./index.js"
+}
