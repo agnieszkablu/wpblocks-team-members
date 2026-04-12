@@ -4,14 +4,14 @@ return array(
 	'boilerplate' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
-		'name' => 'create-block/boilerplate',
+		'name' => 'wpblocks/team-members',
 		'version' => '0.1.0',
 		'title' => 'Boilerplate',
 		'category' => 'widgets',
 		'icon' => 'smiley',
 		'description' => 'Example block scaffolded with Create Block tool.',
 		'example' => array(
-			
+
 		),
 		'supports' => array(
 			'html' => false
