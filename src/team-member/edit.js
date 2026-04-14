@@ -5,12 +5,12 @@ export default function Edit( { attributes, setAttributes } ) {
 
 	const { name, bio } = attributes;
 
-	const onChangeName = ( value ) => {
-		setAttributes( { name: value } );
+	const onChangeName = ( newName ) => {
+		setAttributes( { name: newName } );
 	}
 
-	const onChangeBio = ( value ) => {
-		setAttributes( { bio: value } );
+	const onChangeBio = ( newBio ) => {
+		setAttributes( { bio: newBio } );
 	}
 
 	return (

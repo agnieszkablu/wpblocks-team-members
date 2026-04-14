@@ -39,14 +39,14 @@ function Edit({
     name,
     bio
   } = attributes;
-  const onChangeName = value => {
+  const onChangeName = newName => {
     setAttributes({
-      name: value
+      name: newName
     });
   };
-  const onChangeBio = value => {
+  const onChangeBio = newBio => {
     setAttributes({
-      bio: value
+      bio: newBio
     });
   };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {

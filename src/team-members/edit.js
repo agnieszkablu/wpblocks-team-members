@@ -1,9 +1,29 @@
-import { useBlockProps, InnerBlocks } from '@wordpress/block-editor';
+import { useBlockProps, InnerBlocks, InspectorControls } from '@wordpress/block-editor';
+import { PanelBody, RangeControl  } from '@wordpress/components';
+import { __ } from '@wordpress/i18n';
 import './editor.scss';
 
-export default function Edit() {
+export default function Edit( { attributes, setAttributes } ) {
+	const { columns } = attributes;
+	const onChangeColumns = ( newColumns ) => {
+		setAttributes( { columns: newColumns } );
+	}
+
 	return (
-		<div { ...useBlockProps() }>
+		<div { ...useBlockProps( {
+			className: `has-${ columns }-columns`
+		}) }>
+			<InspectorControls>
+				<PanelBody title={ __( 'Team Members Settings', 'team-members' ) }>
+					<RangeControl
+						label={ __( 'Columns', 'team-members' ) }
+						value={ columns }
+						onChange={ onChangeColumns }
+						min={ 1 }
+						max={ 6 }
+					/>
+				</PanelBody>
+			</InspectorControls>
 			<InnerBlocks
 				allowedBlocks={['wpblocks/team-member']}
 				template={[
