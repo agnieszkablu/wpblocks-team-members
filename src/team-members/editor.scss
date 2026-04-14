@@ -2,7 +2,6 @@
 	display: block;
 
 	> .block-editor-inner-blocks {
-
 		> .block-editor-block-list__layout {
 			display: grid;
 			gap: 10px;
@@ -11,14 +10,23 @@
 
 	@for $i from 1 through 6 {
 		&.has-#{$i}-columns {
-
 			> .block-editor-inner-blocks {
-
 				> .block-editor-block-list__layout {
 					grid-template-columns: repeat(#{$i}, 1fr);
 				}
 			}
 		}
+	}
+
+	.block-list-appender {
+		position: relative;
+		height: 100%;
+		min-height: 70px;
+		margin-top: 10px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border: 1px dashed #ccc;
 	}
 
 	[data-type="wpblocks/team-member"] {
