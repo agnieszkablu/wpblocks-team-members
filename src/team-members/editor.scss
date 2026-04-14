@@ -1,3 +1,40 @@
-.wp-block-create-block-boilerplate {
-	border: 1px dotted #f00;
+.wp-block-wpblocks-team-members {
+	display: block;
+
+	> .block-editor-inner-blocks {
+
+		> .block-editor-block-list__layout {
+			display: grid;
+			gap: 10px;
+		}
+	}
+
+	@for $i from 1 through 6 {
+		&.has-#{$i}-columns {
+
+			> .block-editor-inner-blocks {
+
+				> .block-editor-block-list__layout {
+					grid-template-columns: repeat(#{$i}, 1fr);
+				}
+			}
+		}
+	}
+
+	[data-type="wpblocks/team-member"] {
+		max-width: none;
+
+		h4 {
+			color: #222;
+			font-size: 22px;
+			margin: 0;
+			font-weight: 600;
+		}
+
+		p {
+			color: #555;
+			margin-bottom: 5px;
+			margin-top: 5px;
+		}
+	}
 }

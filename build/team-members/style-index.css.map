@@ -1,1 +1,0 @@
-{"version":3,"file":"team-members/style-index.css","mappings":";;;AAAA;EACC;EACA;EACA;AACD,C","sources":["webpack://boilerplate/./src/team-members/style.scss"],"sourcesContent":[".wp-block-create-block-boilerplate {\n\tbackground-color: #21759b;\n\tcolor: #fff;\n\tpadding: 2px;\n}\n"],"names":[],"ignoreList":[],"sourceRoot":""}
