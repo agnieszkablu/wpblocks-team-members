@@ -32,6 +32,26 @@
 	[data-type="wpblocks/team-member"] {
 		max-width: none;
 
+		.wp-block-blocks-team-member-img {
+			margin-bottom: 20px;
+			position: relative;
+
+			.component-spinner {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+			}
+
+			&.is-loading {
+				opacity: 0.5;
+			}
+		}
+
+		.block-editor-media-placeholder {
+			margin-bottom: 20px;
+		}
+
 		h4 {
 			color: #222;
 			font-size: 22px;
