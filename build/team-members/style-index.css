@@ -23,6 +23,12 @@
 .wp-block-wpblocks-team-members.has-6-columns {
   grid-template-columns: repeat(6, 1fr);
 }
+.wp-block-wpblocks-team-members .wp-block-wpblocks-team-member {
+  margin: 10px;
+}
+.wp-block-wpblocks-team-members .wp-block-wpblocks-team-member img {
+  margin-bottom: 20px;
+}
 .wp-block-wpblocks-team-members .wp-block-wpblocks-team-member h4 {
   color: #222;
   font-size: 22px;

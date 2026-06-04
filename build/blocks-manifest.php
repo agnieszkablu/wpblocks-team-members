@@ -36,6 +36,22 @@ return array(
 				'type' => 'string',
 				'source' => 'html',
 				'selector' => 'p'
+			),
+			'id' => array(
+				'type' => 'number'
+			),
+			'alt' => array(
+				'type' => 'string',
+				'source' => 'attribute',
+				'selector' => 'img',
+				'attribute' => 'alt',
+				'default' => ''
+			),
+			'url' => array(
+				'type' => 'string',
+				'source' => 'attribute',
+				'selector' => 'img',
+				'attribute' => 'src'
 			)
 		),
 		'textdomain' => 'team-member',
