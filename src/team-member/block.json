@@ -47,6 +47,23 @@
 			"source": "attribute",
 			"selector": "img",
 			"attribute": "src"
+		},
+		"socialLinks": {
+			"type": "array",
+			"default": [
+				{
+					"url": "https://facebook.com",
+					"icon": "facebook"
+				},
+				{
+					"url": "https://twitter.com",
+					"icon": "twitter"
+				},
+				{
+					"url": "https://linkedin.com",
+					"icon": "linkedin"
+				}
+			]
 		}
 	},
 	"textdomain": "team-member",

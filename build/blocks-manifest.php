@@ -52,6 +52,23 @@ return array(
 				'source' => 'attribute',
 				'selector' => 'img',
 				'attribute' => 'src'
+			),
+			'socialLinks' => array(
+				'type' => 'array',
+				'default' => array(
+					array(
+						'url' => 'https://facebook.com',
+						'icon' => 'facebook'
+					),
+					array(
+						'url' => 'https://twitter.com',
+						'icon' => 'twitter'
+					),
+					array(
+						'url' => 'https://linkedin.com',
+						'icon' => 'linkedin'
+					)
+				)
 			)
 		),
 		'textdomain' => 'team-member',

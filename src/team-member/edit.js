@@ -1,14 +1,15 @@
 import { useEffect, useState, useRef } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
+import socialIcons from './social-icons';
 import { useBlockProps, RichText, MediaPlaceholder, BlockControls, MediaReplaceFlow, InspectorControls, store as blockEditorStore } from '@wordpress/block-editor';
 import { isBlobURL, revokeBlobURL } from '@wordpress/blob';
 import { useSelect } from '@wordpress/data';
 import { usePrevious } from '@wordpress/compose';
-import { Spinner, withNotices, ToolbarButton, PanelBody, TextareaControl, SelectControl } from '@wordpress/components';
+import { Spinner, withNotices, ToolbarButton, PanelBody, TextareaControl, SelectControl, Icon, Tooltip } from '@wordpress/components';
 
-function Edit( { attributes, setAttributes, noticeOperations, noticeUI } ) {
+function Edit( { attributes, setAttributes, noticeOperations, noticeUI, isSelected } ) {
 
-	const { name, bio, id, url, alt } = attributes;
+	const { name, bio, id, url, alt, socialLinks } = attributes;
 
 	const [blobUrl, setBlobUrl] = useState();
 
@@ -183,6 +184,23 @@ function Edit( { attributes, setAttributes, noticeOperations, noticeUI } ) {
 					placeholder={ __( 'Bio', 'team-member' ) }
 					allowedFormats={[]}//Disable all formatting options for the bio field
 				/>
+				<div>
+					<ul>
+					{ socialLinks.map( ( link, index ) => (
+						<li key={ index } className="team-member-social-link">
+							<Icon icon={ socialIcons[ link.icon ] } />
+							<a href={ link.url } target="_blank" rel="noopener noreferrer">{ link.url }</a>
+						</li>
+					) ) }
+					{ isSelected && (
+						<li className="wp-block-wpblocks-team-member-add-social-link">
+							<Tooltip text={ __( 'Add Social Link', 'team-member' ) }>
+								<button aria-label={ __( 'Add Social Link', 'team-member' ) }><Icon icon={ <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 11V3h2v8h8v2h-8v8h-2v-8H3v-2z"/></svg> } /></button>
+							</Tooltip>
+						</li>
+					) }
+					</ul>
+				</div>
 			</div>
 		</>
 	);
