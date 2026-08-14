@@ -1,15 +1,20 @@
-import { useEffect, useState } from '@wordpress/element';
+import { useEffect, useState, useRef } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import { useBlockProps, RichText, MediaPlaceholder, BlockControls, MediaReplaceFlow, InspectorControls, store as blockEditorStore } from '@wordpress/block-editor';
 import { isBlobURL, revokeBlobURL } from '@wordpress/blob';
-import { Spinner, withNotices, ToolbarButton, PanelBody, TextareaControl, SelectControl } from '@wordpress/components';
 import { useSelect } from '@wordpress/data';
+import { usePrevious } from '@wordpress/compose';
+import { Spinner, withNotices, ToolbarButton, PanelBody, TextareaControl, SelectControl } from '@wordpress/components';
 
 function Edit( { attributes, setAttributes, noticeOperations, noticeUI } ) {
 
 	const { name, bio, id, url, alt } = attributes;
 
 	const [blobUrl, setBlobUrl] = useState();
+
+	const titleRef = useRef();
+
+	const prevURL = usePrevious( url );
 
 	const imageObject = useSelect( ( select ) => {
 		if ( ! id ) {
@@ -98,6 +103,12 @@ function Edit( { attributes, setAttributes, noticeOperations, noticeUI } ) {
 		}
 	}, [ url, blobUrl ] );
 
+	useEffect( () => {
+		if( url && !prevURL ) {
+			titleRef.current?.focus();
+		}
+	}, [ url, prevURL ] );
+
 	return (
 		<>
 			<InspectorControls>
@@ -158,6 +169,7 @@ function Edit( { attributes, setAttributes, noticeOperations, noticeUI } ) {
 					notices={ noticeUI }
 				/>
 				<RichText
+					ref={ titleRef }
 					tagName="h4"
 					value={ name }
 					onChange={ onChangeName }
