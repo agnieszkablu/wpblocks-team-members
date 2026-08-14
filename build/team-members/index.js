@@ -8,7 +8,7 @@
   \*************************************/
 (module) {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"wpblocks/team-members","version":"0.1.0","title":"Team members","category":"media","icon":"groups","description":"A block to display team members.","keywords":["team","members","staff","employees"],"example":{},"supports":{"html":false},"textdomain":"team-members","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js","attributes":{"columns":{"type":"number","default":2}}}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"wpblocks/team-members","version":"0.1.0","title":"Team members","category":"media","icon":"groups","description":"A block to display team members.","keywords":["team","members","staff","employees"],"example":{},"supports":{"html":false,"align":["wide"]},"textdomain":"team-members","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js","attributes":{"columns":{"type":"number","default":2}}}');
 
 /***/ },
 

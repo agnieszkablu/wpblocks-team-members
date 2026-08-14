@@ -76,7 +76,10 @@ return array(
 			
 		),
 		'supports' => array(
-			'html' => false
+			'html' => false,
+			'align' => array(
+				'wide'
+			)
 		),
 		'textdomain' => 'team-members',
 		'editorScript' => 'file:./index.js',
