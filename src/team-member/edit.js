@@ -12,10 +12,12 @@ function Edit( { attributes, setAttributes, noticeOperations, noticeUI, isSelect
 	const { name, bio, id, url, alt, socialLinks } = attributes;
 
 	const [blobUrl, setBlobUrl] = useState();
+	const [selectedLink, setSelectedLink] = useState();
 
 	const titleRef = useRef();
 
 	const prevURL = usePrevious( url );
+	const prevIsSelected = usePrevious( isSelected );
 
 	const imageObject = useSelect( ( select ) => {
 		if ( ! id ) {
@@ -110,6 +112,12 @@ function Edit( { attributes, setAttributes, noticeOperations, noticeUI, isSelect
 		}
 	}, [ url, prevURL ] );
 
+	useEffect( () => {
+		if( !isSelected && prevIsSelected ) {
+			setSelectedLink( undefined );
+		}
+	}, [ isSelected, prevIsSelected ] );
+
 	return (
 		<>
 			<InspectorControls>
@@ -184,12 +192,16 @@ function Edit( { attributes, setAttributes, noticeOperations, noticeUI, isSelect
 					placeholder={ __( 'Bio', 'team-member' ) }
 					allowedFormats={[]}//Disable all formatting options for the bio field
 				/>
-				<div>
+				<div className="wp-block-wpblocks-team-members-social-links">
 					<ul>
 					{ socialLinks.map( ( link, index ) => (
-						<li key={ index } className="team-member-social-link">
-							<Icon icon={ socialIcons[ link.icon ] } />
-							<a href={ link.url } target="_blank" rel="noopener noreferrer">{ link.url }</a>
+						<li key={ index } className={`team-member-social-link ${ isSelected && selectedLink === index ? 'is-selected' : '' }`}>
+							<button
+								aria-label={ __( 'Edit Social Link', 'team-member' ) }
+								onClick={ () => setSelectedLink( index ) }
+							>
+								<Icon icon={ socialIcons[ link.icon ] } />
+							</button>
 						</li>
 					) ) }
 					{ isSelected && (

@@ -66,5 +66,29 @@
   margin-bottom: 5px;
   margin-top: 5px;
 }
+.wp-block-wpblocks-team-members [data-type="wpblocks/team-member"] .wp-block-wpblocks-team-members-social-links ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  gap: 10px;
+}
+.wp-block-wpblocks-team-members [data-type="wpblocks/team-member"] .wp-block-wpblocks-team-members-social-links ul li svg path {
+  fill: #555;
+}
+.wp-block-wpblocks-team-members [data-type="wpblocks/team-member"] .wp-block-wpblocks-team-members-social-links ul li.is-selected {
+  outline: 1px dashed purple;
+}
+.wp-block-wpblocks-team-members [data-type="wpblocks/team-member"] .wp-block-wpblocks-team-members-social-links ul button {
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+.wp-block-wpblocks-team-members [data-type="wpblocks/team-member"] .wp-block-wpblocks-team-members-social-links ul .wp-block-wpblocks-team-member-add-social-link button {
+  outline: 1px dashed #ccc;
+  transition: background-color 0.3s ease;
+}
+.wp-block-wpblocks-team-members [data-type="wpblocks/team-member"] .wp-block-wpblocks-team-members-social-links ul .wp-block-wpblocks-team-member-add-social-link button:hover {
+  background-color: #e5e5e5;
+}
 
 /*# sourceMappingURL=index.css.map*/
