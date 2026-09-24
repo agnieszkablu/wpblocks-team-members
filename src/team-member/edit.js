@@ -88,6 +88,12 @@ function Edit( { attributes, setAttributes, noticeOperations, noticeUI, isSelect
 		noticeOperations.createErrorNotice( message );
 	}
 
+	const addNewSocialItem = () => {
+		setAttributes( { socialLinks: [ ...socialLinks, { link: '', icon: '' } ] } );
+
+		setSelectedLink( socialLinks.length );
+	};
+
 	useEffect( () => {
 		if( !id && isBlobURL( url ) ) {
 			setAttributes( {
@@ -95,7 +101,7 @@ function Edit( { attributes, setAttributes, noticeOperations, noticeUI, isSelect
 				alt: ''
 			} );
 		}
-	}, [ id, url ] );
+	}, [ id, url] );
 
 	useEffect( () => {
 		if ( isBlobURL( url ) && url !== blobUrl ) {
@@ -207,7 +213,12 @@ function Edit( { attributes, setAttributes, noticeOperations, noticeUI, isSelect
 					{ isSelected && (
 						<li className="wp-block-wpblocks-team-member-add-social-link">
 							<Tooltip text={ __( 'Add Social Link', 'team-member' ) }>
-								<button aria-label={ __( 'Add Social Link', 'team-member' ) }><Icon icon={ <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 11V3h2v8h8v2h-8v8h-2v-8H3v-2z"/></svg> } /></button>
+								<button
+									aria-label={ __( 'Add Social Link', 'team-member' ) }
+									onClick={ addNewSocialItem }
+								>
+									<Icon icon={ <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 11V3h2v8h8v2h-8v8h-2v-8H3v-2z"/></svg> } />
+								</button>
 							</Tooltip>
 						</li>
 					) }
