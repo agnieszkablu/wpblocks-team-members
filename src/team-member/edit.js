@@ -6,6 +6,10 @@ import { isBlobURL, revokeBlobURL } from '@wordpress/blob';
 import { useSelect } from '@wordpress/data';
 import { usePrevious } from '@wordpress/compose';
 import { Spinner, withNotices, ToolbarButton, PanelBody, TextareaControl, SelectControl, Icon, Tooltip, TextControl, Button } from '@wordpress/components';
+import { DndContext, useSensors, useSensor, PointerSensor } from "@dnd-kit/core";
+import { SortableContext, horizontalListSortingStrategy, arrayMove } from "@dnd-kit/sortable";
+import { restrictToHorizontalAxis } from "@dnd-kit/modifiers";
+import SortableItem from './sortable-item';
 
 function Edit( { attributes, setAttributes, noticeOperations, noticeUI, isSelected } ) {
 
@@ -18,6 +22,14 @@ function Edit( { attributes, setAttributes, noticeOperations, noticeUI, isSelect
 
 	const prevURL = usePrevious( url );
 	const prevIsSelected = usePrevious( isSelected );
+
+	const sensors = useSensors(
+		useSensor(PointerSensor, {
+			activationConstraint: {
+				distance: 5,
+			},
+		})
+	);
 
 	const imageObject = useSelect( ( select ) => {
 		if ( ! id ) {
@@ -105,6 +117,17 @@ function Edit( { attributes, setAttributes, noticeOperations, noticeUI, isSelect
 		newSocialLinks.splice( selectedLink, 1 );
 		setAttributes( { socialLinks: newSocialLinks } );
 		setSelectedLink( undefined );
+	};
+
+	const handleDragEnd = (event) => {
+		const { active, over } = event;
+
+		if ( active.id !== over.id ) {
+			const oldIndex = socialLinks.findIndex( ( item ) => `${ item.icon }-${ item.url }` === active.id );
+			const newIndex = socialLinks.findIndex( ( item ) => `${ item.icon }-${ item.url }` === over.id );
+			const newSocialLinks = arrayMove( socialLinks, oldIndex, newIndex );
+			setAttributes( { socialLinks: newSocialLinks } );
+		}
 	};
 
 	useEffect( () => {
@@ -213,31 +236,46 @@ function Edit( { attributes, setAttributes, noticeOperations, noticeUI, isSelect
 				/>
 				<div className="wp-block-wpblocks-team-members-social-links">
 					<ul>
-					{ socialLinks.map( ( link, index ) => (
-						<li key={ index } className={`team-member-social-link ${ isSelected && selectedLink === index ? 'is-selected' : '' }`}>
-							<button
-								aria-label={ __( 'Edit Social Link', 'team-member' ) }
-								onClick={ () => setSelectedLink( index ) }
+						<DndContext
+							sensors={sensors}
+							onDragEnd={handleDragEnd}
+							modifiers={ [ restrictToHorizontalAxis ] }
+						>
+							<SortableContext
+								items={ socialLinks.map( ( item ) => `${ item.icon }-${ item.url }` ) }
+								strategy={ horizontalListSortingStrategy }
 							>
-								<Icon icon={ socialIcons[ link.icon ] ? socialIcons[ link.icon ] : socialIcons.github } />
-							</button>
-						</li>
-					) ) }
-					{ isSelected && (
-						<li className="wp-block-wpblocks-team-member-add-social-link">
-							<Tooltip text={ __( 'Add Social Link', 'team-member' ) }>
-								<button
-									aria-label={ __( 'Add Social Link', 'team-member' ) }
-									onClick={ addNewSocialItem }
-								>
-									<Icon icon={ <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 11V3h2v8h8v2h-8v8h-2v-8H3v-2z"/></svg> } />
-								</button>
-							</Tooltip>
-						</li>
-					) }
+								{socialLinks.map((item, index) => {
+									return (
+										<SortableItem
+											key={ `${ item.icon }-${ item.url }` }
+											id={ `${ item.icon }-${ item.url }` }
+											link={item}
+											index={index}
+											isSelected={isSelected}
+											selectedLink={selectedLink}
+											setSelectedLink={setSelectedLink}
+											icon={item.icon}
+										/>
+									);
+								})}
+							</SortableContext>
+						</DndContext>
+						{ isSelected && (
+							<li className="wp-block-wpblocks-team-member-add-social-link">
+								<Tooltip text={ __( 'Add Social Link', 'team-member' ) }>
+									<button
+										aria-label={ __( 'Add Social Link', 'team-member' ) }
+										onClick={ addNewSocialItem }
+									>
+										<Icon icon={ <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 11V3h2v8h8v2h-8v8h-2v-8H3v-2z"/></svg> } />
+									</button>
+								</Tooltip>
+							</li>
+						) }
 					</ul>
 				</div>
-					{ isSelected && socialLinks[ selectedLink ] && (
+				{ isSelected && socialLinks[ selectedLink ] && (
 					<div className="wp-block-wpblocks-team-members-link-form">
 						<TextControl
 							label={ __( 'Social Link URL', 'team-member' ) }
