@@ -106,7 +106,49 @@ return array(
 			'employees'
 		),
 		'example' => array(
-			
+			'attributes' => array(
+				'columns' => 2
+			),
+			'innerBlocks' => array(
+				array(
+					'name' => 'wpblocks/team-member',
+					'attributes' => array(
+						'name' => 'John Doe',
+						'bio' => 'A short bio about John Doe.',
+						'url' => 'https://picsum.photos/id/1012/300/200',
+						'socialLinks' => array(
+							array(
+								'icon' => 'twitter'
+							),
+							array(
+								'icon' => 'linkedin'
+							),
+							array(
+								'icon' => 'facebook'
+							)
+						)
+					)
+				),
+				array(
+					'name' => 'wpblocks/team-member',
+					'attributes' => array(
+						'name' => 'Jane Doe',
+						'bio' => 'A short bio about Jane Doe.',
+						'url' => 'https://picsum.photos/id/1012/300/200',
+						'socialLinks' => array(
+							array(
+								'icon' => 'twitter'
+							),
+							array(
+								'icon' => 'linkedin'
+							),
+							array(
+								'icon' => 'facebook'
+							)
+						)
+					)
+				)
+			)
 		),
 		'supports' => array(
 			'html' => false,

@@ -8,7 +8,7 @@
   \*************************************/
 (module) {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"wpblocks/team-members","version":"0.1.0","title":"Team members","category":"media","icon":"groups","description":"A block to display team members.","keywords":["team","members","staff","employees"],"example":{},"supports":{"html":false,"align":["wide"]},"textdomain":"team-members","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js","attributes":{"columns":{"type":"number","default":2}}}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"wpblocks/team-members","version":"0.1.0","title":"Team members","category":"media","icon":"groups","description":"A block to display team members.","keywords":["team","members","staff","employees"],"example":{"attributes":{"columns":2},"innerBlocks":[{"name":"wpblocks/team-member","attributes":{"name":"John Doe","bio":"A short bio about John Doe.","url":"https://picsum.photos/id/1012/300/200","socialLinks":[{"icon":"twitter"},{"icon":"linkedin"},{"icon":"facebook"}]}},{"name":"wpblocks/team-member","attributes":{"name":"Jane Doe","bio":"A short bio about Jane Doe.","url":"https://picsum.photos/id/1012/300/200","socialLinks":[{"icon":"twitter"},{"icon":"linkedin"},{"icon":"facebook"}]}}]},"supports":{"html":false,"align":["wide"]},"textdomain":"team-members","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js","attributes":{"columns":{"type":"number","default":2}}}');
 
 /***/ },
 

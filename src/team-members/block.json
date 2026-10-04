@@ -13,7 +13,51 @@
 		"staff",
 		"employees"
 	],
-	"example": {},
+	"example": {
+		"attributes": {
+			"columns": 2
+		},
+		"innerBlocks": [
+			{
+				"name": "wpblocks/team-member",
+				"attributes": {
+					"name": "John Doe",
+					"bio": "A short bio about John Doe.",
+					"url": "https://picsum.photos/id/1012/300/200",
+					"socialLinks": [
+						{
+							"icon": "twitter"
+						},
+						{
+							"icon": "linkedin"
+						},
+						{
+							"icon": "facebook"
+						}
+					]
+				}
+			},
+			{
+				"name": "wpblocks/team-member",
+				"attributes": {
+					"name": "Jane Doe",
+					"bio": "A short bio about Jane Doe.",
+					"url": "https://picsum.photos/id/1012/300/200",
+					"socialLinks": [
+						{
+							"icon": "twitter"
+						},
+						{
+							"icon": "linkedin"
+						},
+						{
+							"icon": "facebook"
+						}
+					]
+				}
+			}
+		]
+	},
 	"supports": {
 		"html": false,
 		"align": [
