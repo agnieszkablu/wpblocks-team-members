@@ -68,6 +68,22 @@ return array(
 						'url' => 'https://linkedin.com',
 						'icon' => 'linkedin'
 					)
+				),
+				'source' => 'query',
+				'selector' => '.wp-block-wpblocks-team-members-social-links li',
+				'query' => array(
+					'url' => array(
+						'type' => 'string',
+						'source' => 'attribute',
+						'selector' => 'a',
+						'attribute' => 'href'
+					),
+					'icon' => array(
+						'type' => 'string',
+						'source' => 'attribute',
+						'selector' => 'a',
+						'attribute' => 'data-icon'
+					)
 				)
 			)
 		),

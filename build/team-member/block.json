@@ -63,7 +63,23 @@
           "url": "https://linkedin.com",
           "icon": "linkedin"
         }
-      ]
+      ],
+      "source": "query",
+      "selector": ".wp-block-wpblocks-team-members-social-links li",
+      "query": {
+        "url": {
+          "type": "string",
+          "source": "attribute",
+          "selector": "a",
+          "attribute": "href"
+        },
+        "icon": {
+          "type": "string",
+          "source": "attribute",
+          "selector": "a",
+          "attribute": "data-icon"
+        }
+      }
     }
   },
   "textdomain": "team-member",

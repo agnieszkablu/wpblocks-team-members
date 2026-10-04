@@ -90,5 +90,18 @@
 .wp-block-wpblocks-team-members [data-type="wpblocks/team-member"] .wp-block-wpblocks-team-members-social-links ul .wp-block-wpblocks-team-member-add-social-link button:hover {
   background-color: #e5e5e5;
 }
+.wp-block-wpblocks-team-members [data-type="wpblocks/team-member"] .wp-block-wpblocks-team-members-link-form {
+  background-color: #f9f9f9;
+  padding: 10px;
+  border: 1px solid #ccc;
+  margin-top: 10px;
+}
+.wp-block-wpblocks-team-members [data-type="wpblocks/team-member"] .wp-block-wpblocks-team-members-link-form button {
+  border: 1px solid #c0392b;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+}
 
 /*# sourceMappingURL=index.css.map*/

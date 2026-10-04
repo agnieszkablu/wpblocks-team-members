@@ -19,7 +19,7 @@ export default function Save( { attributes } ) {
 					<ul>
 						{ socialLinks.map( ( link, index ) => (
 							<li key={ index } className="team-member-social-link">
-								<a href={ link.link } target="_blank" rel="noopener noreferrer">
+								<a href={ link.url } data-icon={ link.icon } target="_blank" rel="noopener noreferrer">
 									<Icon icon={ socialIcons[ link.icon ] } />
 								</a>
 							</li>
@@ -30,3 +30,4 @@ export default function Save( { attributes } ) {
 		</div>
 	);
 }
+

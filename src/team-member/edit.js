@@ -5,7 +5,7 @@ import { useBlockProps, RichText, MediaPlaceholder, BlockControls, MediaReplaceF
 import { isBlobURL, revokeBlobURL } from '@wordpress/blob';
 import { useSelect } from '@wordpress/data';
 import { usePrevious } from '@wordpress/compose';
-import { Spinner, withNotices, ToolbarButton, PanelBody, TextareaControl, SelectControl, Icon, Tooltip } from '@wordpress/components';
+import { Spinner, withNotices, ToolbarButton, PanelBody, TextareaControl, SelectControl, Icon, Tooltip, TextControl, Button } from '@wordpress/components';
 
 function Edit( { attributes, setAttributes, noticeOperations, noticeUI, isSelected } ) {
 
@@ -89,9 +89,22 @@ function Edit( { attributes, setAttributes, noticeOperations, noticeUI, isSelect
 	}
 
 	const addNewSocialItem = () => {
-		setAttributes( { socialLinks: [ ...socialLinks, { link: '', icon: '' } ] } );
+		setAttributes( { socialLinks: [ ...socialLinks, { url: '', icon: 'facebook' } ] } );
 
 		setSelectedLink( socialLinks.length );
+	};
+
+	const updateSocialLink = ( index, key, value ) => {
+		const newSocialLinks = [ ...socialLinks ];
+		newSocialLinks[ index ][ key ] = value;
+		setAttributes( { socialLinks: newSocialLinks } );
+	};
+
+	const removeSocialLink = () => {
+		const newSocialLinks = [ ...socialLinks ];
+		newSocialLinks.splice( selectedLink, 1 );
+		setAttributes( { socialLinks: newSocialLinks } );
+		setSelectedLink( undefined );
 	};
 
 	useEffect( () => {
@@ -206,7 +219,7 @@ function Edit( { attributes, setAttributes, noticeOperations, noticeUI, isSelect
 								aria-label={ __( 'Edit Social Link', 'team-member' ) }
 								onClick={ () => setSelectedLink( index ) }
 							>
-								<Icon icon={ socialIcons[ link.icon ] } />
+								<Icon icon={ socialIcons[ link.icon ] ? socialIcons[ link.icon ] : socialIcons.github } />
 							</button>
 						</li>
 					) ) }
@@ -224,6 +237,27 @@ function Edit( { attributes, setAttributes, noticeOperations, noticeUI, isSelect
 					) }
 					</ul>
 				</div>
+					{ isSelected && socialLinks[ selectedLink ] && (
+					<div className="wp-block-wpblocks-team-members-link-form">
+						<TextControl
+							label={ __( 'Social Link URL', 'team-member' ) }
+							value={ socialLinks[ selectedLink ].url }
+							onChange={ ( value ) => updateSocialLink( selectedLink, 'url', value ) }
+						/>
+						<SelectControl
+							label={ __( 'Social Link Icon', 'team-member' ) }
+							value={ socialLinks[ selectedLink ].icon }
+							options={ Object.keys( socialIcons ).map( ( key ) => ( { label: key, value: key } ) ) }
+							onChange={ ( value ) => updateSocialLink( selectedLink, 'icon', value ) }
+						/>
+						<Button
+							isDestructive
+							onClick={ removeSocialLink }
+						>
+							{ __( 'Remove Social Link', 'team-member' ) }
+						</Button>
+					</div>
+					)}
 			</div>
 		</>
 	);

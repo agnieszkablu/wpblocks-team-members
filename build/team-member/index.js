@@ -8,7 +8,7 @@
   \************************************/
 (module) {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"wpblocks/team-member","version":"0.1.0","title":"Team member","parent":["wpblocks/team-members"],"category":"media","icon":"admin-users","description":"A block to display team member.","keywords":["team","member","staff","employee"],"example":{},"supports":{"html":false,"reusable":false},"attributes":{"name":{"type":"string","source":"html","selector":"h4"},"bio":{"type":"string","source":"html","selector":"p"},"id":{"type":"number"},"alt":{"type":"string","source":"attribute","selector":"img","attribute":"alt","default":""},"url":{"type":"string","source":"attribute","selector":"img","attribute":"src"},"socialLinks":{"type":"array","default":[{"url":"https://facebook.com","icon":"facebook"},{"url":"https://twitter.com","icon":"twitter"},{"url":"https://linkedin.com","icon":"linkedin"}]}},"textdomain":"team-member","editorScript":"file:./index.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"wpblocks/team-member","version":"0.1.0","title":"Team member","parent":["wpblocks/team-members"],"category":"media","icon":"admin-users","description":"A block to display team member.","keywords":["team","member","staff","employee"],"example":{},"supports":{"html":false,"reusable":false},"attributes":{"name":{"type":"string","source":"html","selector":"h4"},"bio":{"type":"string","source":"html","selector":"p"},"id":{"type":"number"},"alt":{"type":"string","source":"attribute","selector":"img","attribute":"alt","default":""},"url":{"type":"string","source":"attribute","selector":"img","attribute":"src"},"socialLinks":{"type":"array","default":[{"url":"https://facebook.com","icon":"facebook"},{"url":"https://twitter.com","icon":"twitter"},{"url":"https://linkedin.com","icon":"linkedin"}],"source":"query","selector":".wp-block-wpblocks-team-members-social-links li","query":{"url":{"type":"string","source":"attribute","selector":"a","attribute":"href"},"icon":{"type":"string","source":"attribute","selector":"a","attribute":"data-icon"}}}},"textdomain":"team-member","editorScript":"file:./index.js"}');
 
 /***/ },
 
@@ -149,11 +149,26 @@ function Edit({
   const addNewSocialItem = () => {
     setAttributes({
       socialLinks: [...socialLinks, {
-        link: '',
-        icon: ''
+        url: '',
+        icon: 'facebook'
       }]
     });
     setSelectedLink(socialLinks.length);
+  };
+  const updateSocialLink = (index, key, value) => {
+    const newSocialLinks = [...socialLinks];
+    newSocialLinks[index][key] = value;
+    setAttributes({
+      socialLinks: newSocialLinks
+    });
+  };
+  const removeSocialLink = () => {
+    const newSocialLinks = [...socialLinks];
+    newSocialLinks.splice(selectedLink, 1);
+    setAttributes({
+      socialLinks: newSocialLinks
+    });
+    setSelectedLink(undefined);
   };
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     if (!id && (0,_wordpress_blob__WEBPACK_IMPORTED_MODULE_4__.isBlobURL)(url)) {
@@ -268,7 +283,7 @@ function Edit({
               "aria-label": (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Edit Social Link', 'team-member'),
               onClick: () => setSelectedLink(index),
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.Icon, {
-                icon: _social_icons__WEBPACK_IMPORTED_MODULE_2__["default"][link.icon]
+                icon: _social_icons__WEBPACK_IMPORTED_MODULE_2__["default"][link.icon] ? _social_icons__WEBPACK_IMPORTED_MODULE_2__["default"][link.icon] : _social_icons__WEBPACK_IMPORTED_MODULE_2__["default"].github
               })
             })
           }, index)), isSelected && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("li", {
@@ -291,6 +306,25 @@ function Edit({
             })
           })]
         })
+      }), isSelected && socialLinks[selectedLink] && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
+        className: "wp-block-wpblocks-team-members-link-form",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.TextControl, {
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Social Link URL', 'team-member'),
+          value: socialLinks[selectedLink].url,
+          onChange: value => updateSocialLink(selectedLink, 'url', value)
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.SelectControl, {
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Social Link Icon', 'team-member'),
+          value: socialLinks[selectedLink].icon,
+          options: Object.keys(_social_icons__WEBPACK_IMPORTED_MODULE_2__["default"]).map(key => ({
+            label: key,
+            value: key
+          })),
+          onChange: value => updateSocialLink(selectedLink, 'icon', value)
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.Button, {
+          isDestructive: true,
+          onClick: removeSocialLink,
+          children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Remove Social Link', 'team-member')
+        })]
       })]
     })]
   });
@@ -353,7 +387,8 @@ function Save({
         children: socialLinks.map((link, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("li", {
           className: "team-member-social-link",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("a", {
-            href: link.link,
+            href: link.url,
+            "data-icon": link.icon,
             target: "_blank",
             rel: "noopener noreferrer",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Icon, {
