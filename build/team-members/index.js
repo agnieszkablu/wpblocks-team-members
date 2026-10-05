@@ -121,7 +121,48 @@ __webpack_require__.r(__webpack_exports__);
 
 (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_4__.name, {
   edit: _edit__WEBPACK_IMPORTED_MODULE_2__["default"],
-  save: _save__WEBPACK_IMPORTED_MODULE_3__["default"]
+  save: _save__WEBPACK_IMPORTED_MODULE_3__["default"],
+  transforms: {
+    from: [{
+      type: 'block',
+      blocks: ['core/gallery'],
+      transform: ({
+        images,
+        columns
+      }) => {
+        const innerBlocks = images.map(({
+          url,
+          id,
+          alt
+        }) => (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.createBlock)('wpblocks/team-member', {
+          url,
+          id,
+          alt
+        }));
+        return (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.createBlock)("wpblocks/team-members", {
+          columns: columns || 2
+        }, innerBlocks);
+      }
+    }, {
+      type: 'block',
+      blocks: ['core/image'],
+      isMultiBlock: true,
+      transform: attr => {
+        const innerBlocks = attr.map(({
+          url,
+          id,
+          alt
+        }) => (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.createBlock)('wpblocks/team-member', {
+          url,
+          id,
+          alt
+        }));
+        return (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.createBlock)("wpblocks/team-members", {
+          columns: attr.length > 3 ? 3 : attr.length
+        }, innerBlocks);
+      }
+    }]
+  }
 });
 
 /***/ },
