@@ -5433,7 +5433,7 @@ function findFirstFocusableNode(element) {
   \************************************/
 (module) {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"wpblocks/team-member","version":"0.1.0","title":"Team member","parent":["wpblocks/team-members"],"category":"media","icon":"admin-users","description":"A block to display team member.","keywords":["team","member","staff","employee"],"example":{},"supports":{"html":false,"reusable":false},"attributes":{"name":{"type":"string","source":"html","selector":"h4"},"bio":{"type":"string","source":"html","selector":"p"},"id":{"type":"number"},"alt":{"type":"string","source":"attribute","selector":"img","attribute":"alt","default":""},"url":{"type":"string","source":"attribute","selector":"img","attribute":"src"},"socialLinks":{"type":"array","default":[{"url":"https://facebook.com","icon":"facebook"},{"url":"https://twitter.com","icon":"twitter"},{"url":"https://linkedin.com","icon":"linkedin"}],"source":"query","selector":".wp-block-wpblocks-team-members-social-links li","query":{"url":{"type":"string","source":"attribute","selector":"a","attribute":"href"},"icon":{"type":"string","source":"attribute","selector":"a","attribute":"data-icon"}}}},"textdomain":"team-member","editorScript":"file:./index.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"wpblocks/team-member","version":"0.1.0","title":"Team member","parent":["wpblocks/team-members"],"category":"media","icon":"admin-users","description":"A block to display team member.","keywords":["team","member","staff","employee"],"example":{},"supports":{"html":false,"reusable":false},"usesContext":["blocks/team-members-columns"],"attributes":{"name":{"type":"string","source":"html","selector":"h4"},"bio":{"type":"string","source":"html","selector":"p"},"id":{"type":"number"},"alt":{"type":"string","source":"attribute","selector":"img","attribute":"alt","default":""},"url":{"type":"string","source":"attribute","selector":"img","attribute":"src"},"socialLinks":{"type":"array","default":[{"url":"https://facebook.com","icon":"facebook"},{"url":"https://twitter.com","icon":"twitter"},{"url":"https://linkedin.com","icon":"linkedin"}],"source":"query","selector":".wp-block-wpblocks-team-members-social-links li","query":{"url":{"type":"string","source":"attribute","selector":"a","attribute":"href"},"icon":{"type":"string","source":"attribute","selector":"a","attribute":"data-icon"}}}},"textdomain":"team-member","editorScript":"file:./index.js"}');
 
 /***/ },
 
@@ -5484,6 +5484,7 @@ __webpack_require__.r(__webpack_exports__);
 function Edit({
   attributes,
   setAttributes,
+  context,
   noticeOperations,
   noticeUI,
   isSelected
@@ -5713,6 +5714,9 @@ function Edit({
         onError: onError,
         disableMediaButtons: url,
         notices: noticeUI
+      }), context?.['blocks/team-members-columns'] && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
+        className: "wp-block-wpblocks-team-member-columns",
+        children: context['blocks/team-members-columns']
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.RichText, {
         ref: titleRef,
         tagName: "h4",

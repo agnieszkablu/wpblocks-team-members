@@ -21,6 +21,9 @@
 		"html": false,
 		"reusable": false
 	},
+	"usesContext": [
+		"blocks/team-members-columns"
+	],
 	"attributes": {
 		"name": {
 			"type": "string",

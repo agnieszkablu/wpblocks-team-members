@@ -26,6 +26,9 @@ return array(
 			'html' => false,
 			'reusable' => false
 		),
+		'usesContext' => array(
+			'blocks/team-members-columns'
+		),
 		'attributes' => array(
 			'name' => array(
 				'type' => 'string',
@@ -161,6 +164,9 @@ return array(
 		'editorStyle' => 'file:./index.css',
 		'style' => 'file:./style-index.css',
 		'viewScript' => 'file:./view.js',
+		'providesContext' => array(
+			'blocks/team-members-columns' => 'columns'
+		),
 		'attributes' => array(
 			'columns' => array(
 				'type' => 'number',

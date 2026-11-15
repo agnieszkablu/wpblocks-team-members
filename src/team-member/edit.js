@@ -11,7 +11,7 @@ import { SortableContext, horizontalListSortingStrategy, arrayMove } from "@dnd-
 import { restrictToHorizontalAxis } from "@dnd-kit/modifiers";
 import SortableItem from './sortable-item';
 
-function Edit( { attributes, setAttributes, noticeOperations, noticeUI, isSelected } ) {
+function Edit( { attributes, setAttributes, context, noticeOperations, noticeUI, isSelected } ) {
 
 	const { name, bio, id, url, alt, socialLinks } = attributes;
 
@@ -219,6 +219,11 @@ function Edit( { attributes, setAttributes, noticeOperations, noticeUI, isSelect
 					disableMediaButtons={ url }
 					notices={ noticeUI }
 				/>
+				{context?.['blocks/team-members-columns'] && (
+					<div className="wp-block-wpblocks-team-member-columns">
+						{context['blocks/team-members-columns']}
+					</div>
+				)}
 				<RichText
 					ref={ titleRef }
 					tagName="h4"
